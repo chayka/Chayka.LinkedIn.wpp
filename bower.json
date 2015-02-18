@@ -1,0 +1,24 @@
+{
+    "name": "Chayka.LinkedIn",
+    "description": "LinkedIn integration for Chayka Framework",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        "Boris Mossounov <borix@tut.by>"
+    ],
+    "keywords": [
+        "WordPress",
+        "Chayka",
+        "LinkedIn",
+        "auth"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "res/lib",
+        "test",
+        "tests"
+    ],
+    "dependencies": {}
+}

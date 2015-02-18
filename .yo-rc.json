@@ -1,0 +1,41 @@
+{
+  "generator-chayka": {
+    "support": [
+      "UriProcessing",
+      "ConsolePages"
+    ],
+    "register": [
+      "registerActions",
+      "registerFilters",
+      "registerResources",
+      "registerRoutes",
+      "registerConsolePages"
+    ],
+    "appType": "plugin",
+    "appName": "Chayka.LinkedIn",
+    "appDescription": "LinkedIn integration for Chayka Framework",
+    "appKeywords": "WordPress, Chayka, LinkedIn, auth",
+    "appVersion": "0.0.1",
+    "packagistVendor": "chayka",
+    "packagistPackage": "linkedin-wpp",
+    "phpNamespace": "Chayka\\LinkedIn",
+    "chaykaFramework": "plugin",
+    "chaykaFrameworkDeps": {},
+    "initDep": true,
+    "initDepPhpClass": "Chayka\\WP\\Plugin",
+    "initDepMessage": "Chayka Framework functionality is not available",
+    "gitInit": true,
+    "gitRemote": "github",
+    "githubUser": "chayka",
+    "gitRemoteRepo": "git@github.com:chayka/Chayka.LinkedIn.wpp.git",
+    "gitPush": false,
+    "ideaProject": "Chayka.LinkedIn.wpp",
+    "ideaDeploymentPath": "/Chayka.Core.wpp/vendor/chayka/linkedin-wpp",
+    "appAuthor": "Boris Mossounov",
+    "appAuthorEmail": "borix@tut.by",
+    "appAuthorUri": "http://anotherguru.me/",
+    "appLicense": "MIT",
+    "ideaDeploymentServer": "WP Plugins",
+    "appClass": "Plugin"
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "appType": "plugin",
+    "appName": "Chayka.LinkedIn",
+    "appDescription": "LinkedIn integration for Chayka Framework",
+    "appKeywords": "WordPress, Chayka, LinkedIn, auth",
+    "appVersion": "0.0.1",
+    "appAuthor": "Boris Mossounov",
+    "appAuthorEmail": "borix@tut.by",
+    "appAuthorUri": "http://anotherguru.me/",
+    "appLicense": "MIT",
+    "phpNamespace": "Chayka\\LinkedIn",
+    "chaykaFramework": "plugin",
+    "chaykaFrameworkDeps": {},
+    "support": [
+        "UriProcessing",
+        "ConsolePages"
+    ],
+    "register": [
+        "registerActions",
+        "registerFilters",
+        "registerResources",
+        "registerRoutes",
+        "registerConsolePages"
+    ]
+}
