@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             },
             ng: {
                 files: {
-                    'res/dist/ng-modules/<%= pkg.name %>.min.css': ['res/src/ng-modules/*.css']
+                    'res/dist/ng-modules/chayka-linkedin.css': ['res/src/ng-modules/*.css']
                 }
             }
         },
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'res/dist/js/application.js': resFiles.js,
-                    'res/dist/ng-modules/<%= pkg.name %>.min.js': resFiles.jsNg
+                    'res/dist/ng-modules/chayka-linkedin.js': resFiles.jsNg
                 }
             }
         },

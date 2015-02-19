@@ -1,0 +1,88 @@
+'use strict';
+angular.module('chayka-auth')
+    .directive('authLinkedinButton', ['$translate', 'ajax', 'auth', function($translate, ajax, auth){
+        var $ = angular.element;
+        var lnkdn = {
+
+            $scope: null,
+
+            notAuthorized: false,
+            IN: window.IN,
+            currentUser: window.Chayka.Users.currentUser,
+
+            getIN: function(){
+                if(!lnkdn.IN && window.IN){
+                    // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+                    // for any authentication related change, such as login, logout or session refresh. This means that
+                    // whenever someone who was previously logged out tries to log in again, the correct case below
+                    // will be handled.
+                    lnkdn.IN = window.IN;
+                    lnkdn.IN.Event.on(IN, "auth", lnkdn.onStatusChanged);
+                    //this.parseXFBML();
+                }
+                return lnkdn.IN;
+            },
+
+            //logout: function(){
+            //    if(lnkdn.getIN() && lnkdn.getInUserId() && !lnkdn.notAuthorized){
+            //        lnkdn.currentUser.meta.fb_user_id = null;
+            //        lnkdn.getIN().logout();
+            //    }
+            //},
+
+            getInUserId: function(){
+                return lnkdn.currentUser.meta.in_user_id;
+            },
+
+            //onFacebookLoginButtonClicked: function(event){
+            //    event.preventDefault();
+            //    var lnkdn = this.getIN();
+            //    if(lnkdn){
+            //        lnkdn.getLoginStatus($.proxy(this.onStatusChanged, this));
+            //    }
+            //},
+
+            onStatusChanged: function(response) {
+                // Here we specify what we do with the response anytime this event occurs.
+                if(lnkdn.getInUserId() !== response.authResponse.userID) {
+                    lnkdn.onInLogin(response);
+                }
+            },
+
+            onLoginButtonClicked: function(event){
+                if(event) {
+                    event.preventDefault();
+                }
+                if(lnkdn.getIN()){
+                    lnkdn.IN.User.authorize();
+                }
+            },
+
+            onInLogin: function(INResponse){
+                console.dir({FBResponse: INResponse});
+                ajax.post('/api/linkedin/login', INResponse, {
+                    spinner: false,
+                    showMessage: false,
+                    errorMessage: $translate.instant('message_error_auth_failed'),
+                    success: function(data){
+                        //lnkdn.$scope.$emit('Chayka.Users.currentUserChanged', data.payload);
+                    },
+                    complete: function(data){
+                    }
+                });
+            }
+        };
+
+        auth.LinkedIn = lnkdn;
+
+        return {
+            restrict: 'A',
+            link: function($scope, element){
+                lnkdn.getIN();
+                lnkdn.$scope = $scope;
+                $(document).on('logout', lnkdn.logout);
+                $(element).click(lnkdn.onLoginButtonClicked);
+            }
+        };
+    }])
+;

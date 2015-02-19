@@ -1,0 +1,29 @@
+<h2>LinkedIn</h2>
+
+<div data-ng-app="chayka-options-form" data-ng-cloak>
+    <div data-ng-controller="optionsForm" data-ng-init="namespace = 'Chayka.LinkedIn'">
+        <form data-form-validator="validator" novalidate="novalidate">
+            <div class="form_field fullsize api_key" data-form-field="apiKey">
+                <label class="">API Key</label><input type="text" data-ng-init="options.apiKey=''" data-ng-model="options.apiKey" title="API Key"/>
+            </div>
+            <div class="form_field fullsize secret_key" data-form-field="secretKey">
+                <label class="">Secret Key</label><input type="text" data-ng-init="options.secretKey=''" data-ng-model="options.secretKey" title="Secret Key"/>
+            </div>
+            <div class="form_field fullsize o_auth_user_token" data-form-field="oAuthUserToken">
+                <label class="">OAuth User Token</label><input type="text" data-ng-init="options.oAuthUserToken=''" data-ng-model="options.oAuthUserToken" title="OAuth User Token"/>
+            </div>
+            <div class="form_field fullsize o_auth_user_secret" data-form-field="oAuthUserSecret">
+                <label class="">OAuth User Secret</label><input type="text" data-ng-init="options.oAuthUserSecret=''" data-ng-model="options.oAuthUserSecret" title="OAuth User Secret"/>
+            </div>
+            <div class="form_field stretch init_js_api" data-form-field="initJsApi">
+                <label class="width80">Init JS API</label><select data-ng-init="options.initJsApi='0'; initJsApiOptions = {'0':'No','1':'Yes'}" data-ng-model="options.initJsApi" data-ng-options="key as value for (key, value) in initJsApiOptions" title="Init JS API"></select>
+            </div>
+
+
+	        <!-- chayka: fields -->
+            <div class="buttons">
+                <button class="button button-primary button-large" data-ng-click="saveOptions();">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

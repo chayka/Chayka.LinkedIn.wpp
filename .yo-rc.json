@@ -36,6 +36,21 @@
     "appAuthorUri": "http://anotherguru.me/",
     "appLicense": "MIT",
     "ideaDeploymentServer": "WP Plugins",
-    "appClass": "Plugin"
+    "appClass": "Plugin",
+    "consolePages": [
+      "linkedin"
+    ],
+    "controllers": {
+      "Admin": [
+        "linkedin"
+      ],
+      "Linkedin": [
+        "login"
+      ]
+    },
+    "helpers": [
+      "option",
+      "nls"
+    ]
   }
 }

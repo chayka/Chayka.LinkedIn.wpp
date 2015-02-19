@@ -12,6 +12,7 @@
     ],
     "autoload": {
         "classmap": [
+            "app/helpers",
             "Plugin.php"
         ]
     },

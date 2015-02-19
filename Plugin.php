@@ -13,6 +13,7 @@ class Plugin extends WP\Plugin{
     public static function init(){
         if(!static::$instance){
             static::$instance = $app = new self(__FILE__, array(
+                'linkedin'
                 /* chayka: init-controllers */
             ));
             $app->dbUpdate(array());
@@ -29,6 +30,7 @@ class Plugin extends WP\Plugin{
      * Register your action hooks here using $this->addAction();
      */
     public function registerActions() {
+        $this->addAction('wp_head', array('Chayka\\LinkedIn\\HtmlHelper', 'renderJsInit'));
     	/* chayka: registerActions */
     }
 
@@ -50,6 +52,7 @@ class Plugin extends WP\Plugin{
         $this->setResSrcDir('src/');
         $this->setResDistDir('dist/');
 
+        $this->registerScript('chayka-linkedin', 'ng-modules/chayka-linkedin.js', ['chayka-auth']);
 		/* chayka: registerResources */
     }
 
@@ -64,6 +67,8 @@ class Plugin extends WP\Plugin{
      * Registering console pages
      */
     public function registerConsolePages(){
+        $this->addConsolePage('LinkedIn', 'update_core', 'linkedin', '/admin/linkedin', 'dashicons-share', '75.1234123');
+
         /* chayka: registerConsolePages */
     }
 }
