@@ -41,7 +41,7 @@ class HtmlHelper {
 	 */
 	public static function renderJsInit($locale = ''){
 		if(LinkedInHelper::isJsApiEnabled()) {
-			self::renderView( 'facebook/js-init.phtml', array(
+			self::renderView( 'linkedin/js-init.phtml', array(
 				'apiKey'  => LinkedInHelper::getApiKey(),
 				'locale' => $locale ? $locale : NlsHelper::getLocale(),
 			) );
