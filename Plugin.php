@@ -38,6 +38,9 @@ class Plugin extends WP\Plugin{
      * Register your action hooks here using $this->addFilter();
      */
     public function registerFilters() {
+//	    $this->addFilter('get_avatar', ['Chayka\\LinkedIn\\LinkedInHelper', 'filterGetLinkedInAvatar'], 10, 3);
+	    $this->addFilter('CommentModel.created', ['Chayka\\LinkedIn\\LinkedInHelper', 'filterMarkCommentWithLinkedInUserId']);
+	    $this->addFilter('pre_comment_approved', ['Chayka\\LinkedIn\\LinkedInHelper', 'filterApproveLinkedInUserComment'], 10, 2);
 		/* chayka: registerFilters */
     }
 

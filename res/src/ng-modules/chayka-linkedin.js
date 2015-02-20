@@ -44,9 +44,16 @@ angular.module('chayka-auth')
 
             onStatusChanged: function(response) {
                 // Here we specify what we do with the response anytime this event occurs.
-                if(lnkdn.getInUserId() !== response.authResponse.userID) {
-                    lnkdn.onInLogin(response);
-                }
+                //if(lnkdn.getInUserId() !== response.authResponse.userID) {
+                    lnkdn.onInLogin(lnkdn.IN.ENV.auth);
+                //}
+                //lnkdn.IN.API.Raw("/people/~")
+                //    .result(function(data){
+                //        console.dir({'lnkdn.success': data});
+                //    })
+                //    .error(function(data){
+                //        console.dir({'lnkdn.error': data});
+                //    });
             },
 
             onLoginButtonClicked: function(event){
@@ -54,18 +61,19 @@ angular.module('chayka-auth')
                     event.preventDefault();
                 }
                 if(lnkdn.getIN()){
-                    lnkdn.IN.User.authorize();
+                    lnkdn.IN.User.authorize(lnkdn.onStatusChanged, lnkdn);
                 }
             },
 
             onInLogin: function(INResponse){
-                console.dir({FBResponse: INResponse});
+                console.dir({INResponse: INResponse});
+
                 ajax.post('/api/linkedin/login', INResponse, {
                     spinner: false,
                     showMessage: false,
                     errorMessage: $translate.instant('message_error_auth_failed'),
                     success: function(data){
-                        //lnkdn.$scope.$emit('Chayka.Users.currentUserChanged', data.payload);
+                        lnkdn.$scope.$emit('Chayka.Users.currentUserChanged', data.payload);
                     },
                     complete: function(data){
                     }
