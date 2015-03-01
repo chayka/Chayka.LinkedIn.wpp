@@ -30,7 +30,7 @@ class Plugin extends WP\Plugin{
      * Register your action hooks here using $this->addAction();
      */
     public function registerActions() {
-        $this->addAction('wp_head', array('Chayka\\LinkedIn\\HtmlHelper', 'renderJsInit'));
+        $this->addAction('wp_footer', array('Chayka\\LinkedIn\\HtmlHelper', 'renderJsInit'));
     	/* chayka: registerActions */
     }
 
