@@ -9,6 +9,7 @@
 namespace Chayka\LinkedIn;
 
 
+use Chayka\WP\Helpers\AngularHelper;
 use Chayka\WP\Helpers\ResourceHelper;
 
 class HtmlHelper {
@@ -45,6 +46,7 @@ class HtmlHelper {
 				'apiKey'  => LinkedInHelper::getApiKey(),
 				'locale' => $locale ? $locale : NlsHelper::getLocale(),
 			) );
+			AngularHelper::enqueueScriptStyle('chayka-auth');
 			ResourceHelper::enqueueScript('chayka-linkedin');
 		}
 	}
