@@ -17,7 +17,7 @@ angular.module('chayka-auth')
                     // whenever someone who was previously logged out tries to log in again, the correct case below
                     // will be handled.
                     lnkdn.IN = window.IN;
-                    lnkdn.IN.Event.on(IN, "auth", lnkdn.onStatusChanged);
+                    lnkdn.IN.Event.on(window.IN, 'auth', lnkdn.onStatusChanged);
                     //this.parseXFBML();
                 }
                 return lnkdn.IN;
