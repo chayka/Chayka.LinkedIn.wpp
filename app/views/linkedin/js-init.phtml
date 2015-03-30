@@ -1,6 +1,7 @@
 <?php
+	$lazy = \Chayka\LinkedIn\LinkedInHelper::isJsApiLazy();
 ?>
-<script type="text/javascript" src="//platform.linkedin.com/in.js">
+<script id="linkedin_script" type="text/<?php echo $lazy?'template':'javascript'?>" src="//platform.linkedin.com/in.js">
 	api_key:   <?php echo $this->apiKey;?>
 
 	onLoad:    Chayka.Auth.LinkedIn.getIN

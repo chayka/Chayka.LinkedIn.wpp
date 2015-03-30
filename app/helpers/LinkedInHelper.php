@@ -18,6 +18,13 @@ class LinkedInHelper {
 	}
 
 	/**
+	 * @return boolean
+	 */
+	public static function isJsApiLazy(){
+		return !!OptionHelper::getOption('lazyJsApi');
+	}
+
+	/**
 	 * @return string
 	 */
 	public static function getApiKey(){

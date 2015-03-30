@@ -6,19 +6,36 @@ angular.module('chayka-auth')
 
             $scope: null,
 
+            autoAuth: false,
+
             notAuthorized: false,
             IN: window.IN,
             currentUser: window.Chayka.Users.currentUser,
 
             getIN: function(){
-                if(!lnkdn.IN && window.IN){
-                    // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
-                    // for any authentication related change, such as login, logout or session refresh. This means that
-                    // whenever someone who was previously logged out tries to log in again, the correct case below
-                    // will be handled.
-                    lnkdn.IN = window.IN;
-                    lnkdn.IN.Event.on(window.IN, 'auth', lnkdn.onStatusChanged);
-                    //this.parseXFBML();
+                if(!lnkdn.IN){
+                    if(window.IN) {
+                        // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+                        // for any authentication related change, such as login, logout or session refresh. This means that
+                        // whenever someone who was previously logged out tries to log in again, the correct case below
+                        // will be handled.
+                        lnkdn.IN = window.IN;
+                        lnkdn.IN.Event.on(window.IN, 'auth', lnkdn.onStatusChanged);
+                        if(lnkdn.autoAuth){
+                            lnkdn.onLoginButtonClicked(lnkdn.autoAuth);
+                        }
+                        //this.parseXFBML();
+
+                    }else{
+                        var script = $('#linkedin_script');
+                        if(script.attr('type') === 'text/template'){
+                            $('<script type="text/javascript">')
+                                .attr('src', script.attr('src'))
+                                .text(script.text())
+                                .insertAfter(script);
+                            script.remove();
+                        }
+                    }
                 }
                 return lnkdn.IN;
             },
@@ -57,6 +74,7 @@ angular.module('chayka-auth')
             },
 
             onLoginButtonClicked: function(event){
+                lnkdn.autoAuth = event;
                 if(event) {
                     event.preventDefault();
                 }
@@ -90,6 +108,10 @@ angular.module('chayka-auth')
                 lnkdn.$scope = $scope;
                 $(document).on('logout', lnkdn.logout);
                 $(element).click(lnkdn.onLoginButtonClicked);
+                $scope.$on('Chayka.Users.currentUserChanged', function(user){
+                    console.dir({'LinkedIn.currentUserChanged': user});
+                });
+
             }
         };
     }])
