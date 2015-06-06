@@ -94,7 +94,7 @@ class LinkedInHelper {
 	 * @param CommentModel $comment
 	 * @return CommentModel
 	 */
-	public function filterMarkCommentWithLinkedInUserId($comment){
+	public static function filterMarkCommentWithLinkedInUserId($comment){
 		if($comment->getUserId()){
 			$user = UserModel::selectById($comment->getUserId());
 			if($user && $user->getMeta('linkedin_user_id')){
@@ -112,7 +112,7 @@ class LinkedInHelper {
 	 *
 	 * @return bool
 	 */
-	public function filterApproveLinkedInUserComment($approved, $rawComment){
+	public static function filterApproveLinkedInUserComment($approved, $rawComment){
 		$userId = Util::getItem($rawComment, 'user_id');
 		if(!$approved && $userId){
 			$user = UserModel::selectById($userId);

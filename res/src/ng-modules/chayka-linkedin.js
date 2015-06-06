@@ -1,6 +1,6 @@
 'use strict';
 angular.module('chayka-auth')
-    .directive('authLinkedinButton', ['$translate', 'ajax', 'auth', function($translate, ajax, auth){
+    .factory('linkedin', ['$translate', 'ajax', 'auth', function($translate, ajax, auth){
         var $ = angular.element;
         var lnkdn = {
 
@@ -40,29 +40,14 @@ angular.module('chayka-auth')
                 return lnkdn.IN;
             },
 
-            //logout: function(){
-            //    if(lnkdn.getIN() && lnkdn.getInUserId() && !lnkdn.notAuthorized){
-            //        lnkdn.currentUser.meta.fb_user_id = null;
-            //        lnkdn.getIN().logout();
-            //    }
-            //},
-
             getInUserId: function(){
                 return lnkdn.currentUser.meta.in_user_id;
             },
 
-            //onFacebookLoginButtonClicked: function(event){
-            //    event.preventDefault();
-            //    var lnkdn = this.getIN();
-            //    if(lnkdn){
-            //        lnkdn.getLoginStatus($.proxy(this.onStatusChanged, this));
-            //    }
-            //},
-
             onStatusChanged: function(response) {
                 // Here we specify what we do with the response anytime this event occurs.
                 //if(lnkdn.getInUserId() !== response.authResponse.userID) {
-                    lnkdn.onInLogin(lnkdn.IN.ENV.auth);
+                lnkdn.onInLogin(lnkdn.IN.ENV.auth);
                 //}
                 //lnkdn.IN.API.Raw("/people/~")
                 //    .result(function(data){
@@ -100,6 +85,11 @@ angular.module('chayka-auth')
         };
 
         auth.LinkedIn = lnkdn;
+
+        return lnkdn;
+    }])
+    .directive('authLinkedinButton', ['linkedin', function(lnkdn){
+        var $ = angular.element;
 
         return {
             restrict: 'A',
