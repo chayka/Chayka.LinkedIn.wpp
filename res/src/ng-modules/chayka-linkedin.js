@@ -1,6 +1,6 @@
 'use strict';
 angular.module('chayka-auth')
-    .factory('linkedin', ['$translate', 'ajax', 'auth', function($translate, ajax, auth){
+    .factory('linkedin', ['nls', 'ajax', 'auth', function(nls, ajax, auth){
         var $ = angular.element;
         var lnkdn = {
 
@@ -69,12 +69,12 @@ angular.module('chayka-auth')
             },
 
             onInLogin: function(INResponse){
-                console.dir({INResponse: INResponse});
+                //console.dir({INResponse: INResponse});
 
                 ajax.post('/api/linkedin/login', INResponse, {
                     spinner: false,
                     showMessage: false,
-                    errorMessage: $translate.instant('message_error_auth_failed'),
+                    errorMessage: nls._('message_error_auth_failed'),
                     success: function(data){
                         lnkdn.$scope.$emit('Chayka.Users.currentUserChanged', data.payload);
                     },
@@ -99,7 +99,7 @@ angular.module('chayka-auth')
                 $(document).on('logout', lnkdn.logout);
                 $(element).click(lnkdn.onLoginButtonClicked);
                 $scope.$on('Chayka.Users.currentUserChanged', function(user){
-                    console.dir({'LinkedIn.currentUserChanged': user});
+                    //console.dir({'LinkedIn.currentUserChanged': user});
                 });
 
             }
