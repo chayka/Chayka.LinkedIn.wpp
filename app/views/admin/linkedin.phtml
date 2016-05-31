@@ -1,8 +1,7 @@
 <h2>LinkedIn</h2>
 
-<div data-ng-cloak>
-    <div data-ng-controller="optionsForm" data-ng-init="namespace = 'Chayka.LinkedIn'">
-        <form data-form-validator="validator" novalidate="novalidate">
+<div data-ng-cloak data-ng-init="options={};">
+    <div data-console-page-options="options" data-namespace="Chayka.LinkedIn">
             <div class="form_field fullsize api_key" data-form-field="apiKey">
                 <label class="">API Key</label><input type="text" data-ng-init="options.apiKey=''" data-ng-model="options.apiKey" title="API Key"/>
             </div>
@@ -25,9 +24,5 @@
 
 
 	        <!-- chayka: fields -->
-            <div class="buttons">
-                <button class="button button-primary button-large" data-ng-click="saveOptions();">Save</button>
-            </div>
-        </form>
     </div>
 </div>
